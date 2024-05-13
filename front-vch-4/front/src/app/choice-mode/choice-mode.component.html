@@ -1,0 +1,57 @@
+@if (flag) {
+  Введите точки
+  <div id="mode">
+    <form (ngSubmit)="onSubmit()" [formGroup]="pointsForm">
+        @for (num of numbers; track $index) {
+        x{{num}} <input type="number" [formControlName]="'x' + num">
+        y{{num}} <input type="number"[formControlName]="'y' + num">
+        <br>
+      }
+      <button type="submit" [disabled]="!pointsForm.valid">Выбрать</button>
+    </form>
+    <br>
+    <hr>
+    @for (item of data; track $index) {
+      @if (item.length > 2) {
+        <p><strong>{{item[0]}}</strong></p>
+        <p>{{item[1]}}</p>
+        <table>
+          <tr>
+            <th>{{item[2][0]}}</th>
+            <th>{{item[2][1]}}</th>
+            <th>{{item[2][2]}}</th>
+            <th>{{item[2][3]}}</th>
+            <th>{{item[2][4]}}</th>
+          </tr>
+          @for (str of item[3]; track $index) {
+            <tr>
+              <td>{{str[0]}}</td>
+              <td>{{str[1]}}</td>
+              <td>{{str[2]}}</td>
+              <td>{{str[3]}}</td>
+              <td>{{str[4]}}</td>
+            </tr>
+          }
+        </table>
+        <p>{{item[4]}}</p>
+        <p>{{item[5]}}</p>
+        <p>{{item[6]}}</p>
+      }
+      @else {
+        <p>{{item[0]}}</p>
+        <p>{{item[1]}}</p>
+      }
+      <hr>
+    }
+    <canvas id="myChart"></canvas>
+  </div>
+}
+@else {
+  Веберите количество точек
+  <br>
+  <form (ngSubmit)="onSubmitCount()" [formGroup]="countForm">
+    Введите число от 8 до 12 <input type="number" formControlName="numberInput">
+    <br>
+    <button type="submit" [disabled]="!countForm.valid">Выбрать</button>
+  </form>
+}
