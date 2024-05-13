@@ -1,4 +1,6 @@
 @if (flag) {
+  <button id="reboot" type="button" onClick="window.location.reload();">Ввести новое количество точек</button>
+  <br>
   Введите точки
   <div id="mode">
     <form (ngSubmit)="onSubmit()" [formGroup]="pointsForm">
